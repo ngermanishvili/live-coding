@@ -6,10 +6,10 @@ function App() {
   const colors = ["green", "blue", "orange", "blue", "black", "orange"];
 
   const addCircle = () => {
+    const posX = Math.floor(Math.random() * 1280);
+    const posY = Math.floor(Math.random() * 720);
     const id = Math.floor(Math.random() * colors.length);
     const color = colors[id];
-    const posX = Math.floor(Math.random() * 1024);
-    const posY = Math.floor(Math.random() * 766);
 
     const newCircle = { id, posX, posY, color };
     setCircles((prev) => [...prev, newCircle]);
@@ -23,7 +23,9 @@ function App() {
       updatedHistory.pop();
       setHistory(updatedHistory);
       const circlesToDisplay = updatedHistory.map((circle) => circle.id);
-      setCircles((prev) => prev.filter((circle) => circlesToDisplay.includes(circle.id)));
+      setCircles((prev) =>
+        prev.filter((circle) => circlesToDisplay.includes(circle.id))
+      );
     }
   };
 
@@ -36,13 +38,13 @@ function App() {
           <div key={circle.id}>
             <div
               style={{
-                backgroundColor: circle.color,
-                borderRadius: "50%",
+                top: circle.posY,
+                left: circle.posX,
                 width: "15px",
                 height: "15px",
                 position: "absolute",
-                top: circle.posY,
-                left: circle.posX,
+                backgroundColor: circle.color,
+                borderRadius: "50%",
               }}
             ></div>
           </div>
